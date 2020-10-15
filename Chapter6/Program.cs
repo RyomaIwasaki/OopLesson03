@@ -41,45 +41,60 @@ namespace Chapter6 {
             //Console.WriteLine($"10以上の数は{counts}個です");
             //Console.WriteLine();
 
-            //6.2.1
+            ////6.2.1
             var books = Books.GetBooks();
-            var book = books.Where(n => n.Title == "ワンダフル・C#ライフ");
-            foreach (var item in book)
+            //var book = books.Where(n => n.Title == "ワンダフル・C#ライフ");
+            //foreach (var item in book)
+            //{
+            //    Console.WriteLine($"価格:{item.Price}  ページ{item.Pages}");
+            //}
+            //Console.WriteLine();
+            ////6.2.2
+            //Console.WriteLine($"タイトルに「C#」がある冊数：{books.Count(x => x.Title.Contains("C#"))}");
+            //Console.WriteLine();
+            ////6.2.3
+            //var title = books.Where(n => n.Title.Contains("C#"));
+            //Console.WriteLine(title.Average(a => a.Pages));
+            //Console.WriteLine();
+            ////6.2.4
+            //var bookIndex = books.FirstOrDefault(m => m.Price >= 4000);
+            //if (bookIndex!=null)
+            //{
+            //    Console.WriteLine(bookIndex.Title);
+            //}
+            //Console.WriteLine();
+            ////6.2.5
+            //var bookmans = books.Where(m => m.Price < 4000).Max(n=>n.Pages);
+            //Console.WriteLine(bookmans);
+            //Console.WriteLine();
+            ////6.2.6
+            //var bookoff = books.Where(m => m.Pages >= 400).OrderByDescending(n => n.Price);
+            //foreach (var item in bookoff)
+            //{
+            //    Console.WriteLine("{0},{1}", item.Title, item.Price);
+            //}
+            //Console.WriteLine();
+            ////6.2.7
+            //var selected = books.Where(n => n.Title.Contains("C#") && n.Pages <= 500);
+            //foreach (var item in selected)
+            //{
+            //    Console.WriteLine(item.Title);
+            //}
+            //Console.WriteLine();
+            //全ての書籍から「C#」の文字がいくつあるかカウントする
+            int count = 0;
+
+            foreach (var book in books.Where(b => b.Title.Contains("C#")))
             {
-                Console.WriteLine($"価格:{item.Price}  ページ{item.Pages}");
+                for (int i = 0; i < book.Title.Length - 1; i++)
+                {
+                    if ((book.Title[i] == 'C') && (book.Title[i + 1] == '#'))
+                    {
+                        count++;
+                    }
+                }
             }
-            Console.WriteLine();
-            //6.2.2
-            Console.WriteLine($"タイトルに「C#」がある冊数：{books.Count(x => x.Title.Contains("C#"))}");
-            Console.WriteLine();
-            //6.2.3
-            var title = books.Where(n => n.Title.Contains("C#"));
-            Console.WriteLine(title.Average(a => a.Pages));
-            Console.WriteLine();
-            //6.2.4
-            var bookIndex = books.FirstOrDefault(m => m.Price >= 4000);
-            if (bookIndex!=null)
-            {
-                Console.WriteLine(bookIndex.Title);
-            }
-            Console.WriteLine();
-            //6.2.5
-            var bookmans = books.Where(m => m.Price < 4000).Max(n=>n.Pages);
-            Console.WriteLine(bookmans);
-            Console.WriteLine();
-            //6.2.6
-            var bookoff = books.Where(m => m.Pages >= 400).OrderByDescending(n => n.Price);
-            foreach (var item in bookoff)
-            {
-                Console.WriteLine("{0},{1}", item.Title, item.Price);
-            }
-            Console.WriteLine();
-            //6.2.7
-            var selected = books.Where(n => n.Title.Contains("C#") && n.Pages <= 500);
-            foreach (var item in selected)
-            {
-                Console.WriteLine(item.Title);
-            }
+            Console.WriteLine($"文字列「C#」の個数は{count}です");
 
         }
     }
