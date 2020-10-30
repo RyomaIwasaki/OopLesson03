@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="39*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="件名:" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" FontSize="25"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="To:" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" FontSize="25"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Cc:" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" FontSize="25"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Bcc:" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" FontSize="25"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="本文:" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" FontSize="25"/>
+
     </Grid>
 </Window>
