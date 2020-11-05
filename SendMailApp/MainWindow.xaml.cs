@@ -22,6 +22,7 @@ namespace SendMailApp {
     public partial class MainWindow : Window {
 
         SmtpClient sc = new SmtpClient();
+        public System.Net.Mail.MailAddressCollection CC { get; }
 
         public MainWindow() {
             InitializeComponent();
@@ -43,6 +44,8 @@ namespace SendMailApp {
             try {
                 MailMessage msg = new MailMessage("ojsinfosys01@gmail.com", tbTo.Text);
 
+                msg.CC.Add(tbCc.Text);
+                msg.Bcc.Add(tbBcc.Text);
                 msg.Subject = tbTitle.Text;//件名
                 msg.Body = tbBody.Text;//本文
                 
@@ -53,6 +56,7 @@ namespace SendMailApp {
 
                 //sc.Send(msg);//送信
                 sc.SendMailAsync(msg);//送信
+                
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
