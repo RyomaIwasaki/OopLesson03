@@ -23,6 +23,7 @@ namespace SendMailApp {
 
         SmtpClient sc = new SmtpClient();
         public System.Net.Mail.MailAddressCollection CC { get; }
+        public System.Net.Mail.MailAddressCollection Bcc { get; }
 
         public MainWindow() {
             InitializeComponent();
