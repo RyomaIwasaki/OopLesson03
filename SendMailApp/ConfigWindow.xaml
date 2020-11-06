@@ -40,7 +40,7 @@
                 <PasswordBox x:Name="tbPassWord" Grid.Row="1" Grid.Column="3" Margin="5,20"/>
                 <CheckBox x:Name="cbSsl" Grid.Row="3" Grid.Column="3" Content="SSL有効" 
                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                
+
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Margin="5,10" BorderBrush="Black" Header="ユーザー情報">
@@ -61,7 +61,20 @@
             </Grid>
         </GroupBox>
 
-
+        <Grid Grid.Row="2" Background="BurlyWood">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="245*"/>
+                <ColumnDefinition Width="151*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button x:Name="btDefault" Content="初期値" Width="80" Margin="10" Click="btDefault_Click"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="btOk" Content="OK" Width="80" Margin="10"/>
+                <Button x:Name="btCansel" Content="キャンセル" Width="80" Margin="10"/>
+                <Button x:Name="btApply" Content="適用" Width="80" Margin="10" Click="btApply_Click"/>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Window>
