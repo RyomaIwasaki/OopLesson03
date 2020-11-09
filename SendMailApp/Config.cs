@@ -26,7 +26,7 @@ namespace SendMailApp {
         public bool Ssl { get; set; }       //SSL設定
 
         //コンストラクタ(外部からnewできないようにする)
-        private Config() {}
+        private Config() { }
 
         //初期設定用
         public void DefaultSet() {
@@ -44,14 +44,14 @@ namespace SendMailApp {
                 MailAddress = "ojsinfosys01@gmail.com",
                 PassWord = "ojsInfosys2020",
                 Port = 587,
-                Ssl = true,            
+                Ssl = true,
             };
             return obj;
         }
 
         //設定データ更新
         //public bool UpdateStatus(Config cf) {
-        public bool UpdateStatus(string smtp,string mailAddress,string passWord,int port,bool ssl) {
+        public bool UpdateStatus(string smtp, string mailAddress, string passWord, int port, bool ssl) {
             this.Smtp = smtp;
             this.Port = port;
             this.MailAddress = mailAddress;
@@ -61,13 +61,30 @@ namespace SendMailApp {
         }
 
         public void Serialise() {       //シリアル化 
-            XmlSerializer xs = new XmlSerializer(typeof(Config));
-            StreamWriter sw = new StreamWriter("Config.xml");
-            Config cf = Config.GetInstance();
-            xs.Serialize(sw,cf);
+            try {
+                XmlSerializer xs = new XmlSerializer(typeof(Config));
+                StreamWriter sw = new StreamWriter("Config.xml");
+                Config cf = Config.GetInstance();
+                xs.Serialize(sw, cf);
+            }
+            catch (Exception) {
+
+                throw;
+            }
+
         }
 
         public void DeSerialise() {     //逆シリアル化 
+            try {
+                using (StreamReader sr = new StreamReader("Config.xml")) {
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                    Instance = xs.Deserialize(sr) as ;
+                }
+            }
+            catch (Exception) {
+
+                throw;
+            }
 
         }
     }
