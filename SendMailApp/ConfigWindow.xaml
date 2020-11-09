@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SendMailApp"
         mc:Ignorable="d"
-        Title="設定" Height="450" Width="800">
+        Title="メール送信設定" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid Background="LightSkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <GroupBox Grid.Row="0" Margin="5,10" BorderBrush="Black" Header="送信情報">
-            <Grid>
+            <Grid Margin="25,10,-25,-10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="3*"/>
@@ -34,10 +34,10 @@
                 <TextBox x:Name="tbUserName" Grid.Row="1" Grid.Column="1" Margin="5,20"/>
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="ポート：" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbPort" Grid.Row="0" Grid.Column="4" Margin="5,20"/>
+                <TextBox x:Name="tbPort" Grid.Row="0" Grid.Column="3" Margin="5,20,26,20"/>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="パスワード：" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <PasswordBox x:Name="tbPassWord" Grid.Row="1" Grid.Column="3" Margin="5,20"/>
+                <PasswordBox x:Name="tbPassWord" Grid.Row="1" Grid.Column="3" Margin="0,20,26,20" HorizontalAlignment="Right" Width="258"/>
                 <CheckBox x:Name="cbSsl" Grid.Row="3" Grid.Column="3" Content="SSL有効" 
                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
@@ -70,8 +70,8 @@
                 <Button x:Name="btDefault" Content="初期値" Width="80" Margin="10" Click="btDefault_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button x:Name="btOk" Content="OK" Width="80" Margin="10"/>
-                <Button x:Name="btCansel" Content="キャンセル" Width="80" Margin="10"/>
+                <Button x:Name="btOk" Content="OK" Width="80" Margin="10" Click="btOk_Click"/>
+                <Button x:Name="btCansel" Content="キャンセル" Width="80" Margin="10" Click="btCansel_Click"/>
                 <Button x:Name="btApply" Content="適用" Width="80" Margin="10" Click="btApply_Click"/>
             </StackPanel>
         </Grid>

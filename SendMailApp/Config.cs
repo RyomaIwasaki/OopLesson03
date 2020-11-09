@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace SendMailApp {
     public class Config {
@@ -57,5 +58,12 @@ namespace SendMailApp {
             return true;
         }
 
+        public void Serialise() {       //シリアル化 
+            using(var sender=XmlWriter.Create())
+        }
+
+        public void DeSerialise() {     //逆シリアル化 
+
+        }
     }
 }
