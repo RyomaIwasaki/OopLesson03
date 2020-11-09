@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace SendMailApp {
     public class Config {
@@ -59,7 +61,10 @@ namespace SendMailApp {
         }
 
         public void Serialise() {       //シリアル化 
-            using(var sender=XmlWriter.Create())
+            XmlSerializer xs = new XmlSerializer(typeof(Config));
+            StreamWriter sw = new StreamWriter("Config.xml");
+            Config cf = Config.GetInstance();
+            xs.Serialize(sw,cf);
         }
 
         public void DeSerialise() {     //逆シリアル化 
