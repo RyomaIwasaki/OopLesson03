@@ -78,7 +78,7 @@ namespace SendMailApp {
             try {
                 using (StreamReader sr = new StreamReader("Config.xml")) {
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
-                    Instance = xs.Deserialize(sr) as ;
+                    Instance = xs.Deserialize(sr) as Config;
                 }
             }
             catch (Exception) {
