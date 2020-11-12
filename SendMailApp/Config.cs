@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 using System.Xml.Serialization;
@@ -67,8 +68,8 @@ namespace SendMailApp {
                 Config cf = Config.GetInstance();
                 xs.Serialize(sw, cf);
             }
-            catch (Exception) {
-
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
                 throw;
             }
 
@@ -81,8 +82,8 @@ namespace SendMailApp {
                     Instance = xs.Deserialize(sr) as Config;
                 }
             }
-            catch (Exception) {
-
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
                 throw;
             }
 

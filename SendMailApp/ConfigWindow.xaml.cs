@@ -36,19 +36,52 @@ namespace SendMailApp {
         private void btApply_Click(object sender, RoutedEventArgs e) {
             (Config.GetInstance()).UpdateStatus(tbSmtp.Text,
                                                 tbUserName.Text,
-                                                tbPassWord.Password, 
-                                                int.Parse(tbPort.Text), 
+                                                tbPassWord.Password,
+                                                int.Parse(tbPort.Text),
                                                 cbSsl.IsChecked ?? false);  //更新処理を呼び出す
 
         }
         //OKボタン
         private void btOk_Click(object sender, RoutedEventArgs e) {
-            btApply_Click(sender, e);   //更新処理を呼び出す
-            this.Close();
+            NullIs(sender, e);
+
         }
+
+        private void NullIs(object sender, RoutedEventArgs e) {
+            if (tbPassWord.Password == "") {
+                MessageBox.Show("パスワードを入力してください");
+            }
+            else if (int.Parse(tbPort.Text) == 0) {
+                MessageBox.Show("ポート番号を入力してください");
+            }
+            else if (tbSmtp.Text == "") {
+                MessageBox.Show("SMTPを入力してください");
+            }
+            else if (tbUserName.Text == "") {
+                MessageBox.Show("メールアドレスを入力してください");
+            }
+            else {
+                btApply_Click(sender, e);   //更新処理を呼び出す
+                this.Close();
+            }
+        }
+
         //キャンセルボタン
         private void btCansel_Click(object sender, RoutedEventArgs e) {
-            this.Close();
+            if (tbPassWord.Password != null || tbPort.Text != null
+                || tbSmtp.Text != null || tbUserName.Text != null) {
+                MessageBoxResult result = MessageBox.Show("設定データを破棄します。", "", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK) {
+                    this.Close();
+
+                }
+                else if (result == MessageBoxResult.Cancel) {
+
+                }
+            }
+            else {
+                this.Close();
+            }
         }
         //ロード時に一度だけ呼び出される
         private void Window_Loaded(object sender, RoutedEventArgs e) {
@@ -58,7 +91,11 @@ namespace SendMailApp {
             tbSmtp.Text = stf.Smtp;
             cbSsl.IsChecked = stf.Ssl;
             tbSender.Text = stf.MailAddress;
-            tbPort.Text= stf.Port.ToString();
+            tbPort.Text = stf.Port.ToString();
+        }
+
+        private void tbSender_TextChanged(object sender, TextChangedEventArgs e) {
+
         }
     }
 }
