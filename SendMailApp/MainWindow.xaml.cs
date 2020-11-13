@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -104,6 +105,19 @@ namespace SendMailApp {
 
         private void Window_Closed(object sender, EventArgs e) {
             Config.GetInstance().Serialise();
+        }
+
+        private void bttuika_Click(object sender, RoutedEventArgs e) {
+            var fod = new OpenFileDialog();
+            fod.Multiselect = true;
+            if (fod.ShowDialog()==true) {
+
+                lbList.Items.Add(fod.FileName);
+            }
+        }
+
+        private void btsakujo_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
