@@ -58,9 +58,16 @@ namespace SendMailApp {
 
                 msg.Subject = tbTitle.Text;//件名
                 msg.Body = tbBody.Text;//本文
-                foreach (var item in lbList.Items) {
-                    msg.Attachments.Add(new Attachment(item.ToString())); ;
+                try {
+                    foreach (var item in lbList.Items) {
+                        msg.Attachments.Add(new Attachment(item.ToString())); ;
+                    }
                 }
+                catch (Exception ex) {
+
+                    MessageBox.Show(ex.Message);
+                }
+                
 
                 sc.Host = cf.Smtp;//SMTPサーバの設定
                 sc.Port = cf.Port;
@@ -120,7 +127,14 @@ namespace SendMailApp {
         }
 
         private void btsakujo_Click(object sender, RoutedEventArgs e) {
-            lbList.Items.RemoveAt(lbList.SelectedIndex);
+            try {
+                lbList.Items.RemoveAt(lbList.SelectedIndex);
+            }
+            catch (Exception ex) {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }
