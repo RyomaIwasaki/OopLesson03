@@ -48,7 +48,7 @@ namespace SendMailApp {
                 Config cf = Config.GetInstance();
                 MailMessage msg = new MailMessage(cf.MailAddress, tbTo.Text);
 
-                if (tbCc.Text!="") {
+                if (tbCc.Text != "") {
                     msg.CC.Add(tbCc.Text);
 
                 }
@@ -58,7 +58,10 @@ namespace SendMailApp {
 
                 msg.Subject = tbTitle.Text;//件名
                 msg.Body = tbBody.Text;//本文
-                
+                foreach (var item in lbList.Items) {
+                    msg.Attachments.Add(new Attachment(item.ToString())); ;
+                }
+
                 sc.Host = cf.Smtp;//SMTPサーバの設定
                 sc.Port = cf.Port;
                 sc.EnableSsl = cf.Ssl;
@@ -66,12 +69,12 @@ namespace SendMailApp {
 
                 //sc.Send(msg);//送信
                 sc.SendMailAsync(msg);//送信
-                
+
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
         //送信キャンセル処理
         private void cansel_Click(object sender, RoutedEventArgs e) {
@@ -100,7 +103,6 @@ namespace SendMailApp {
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            
         }
 
         private void Window_Closed(object sender, EventArgs e) {
@@ -110,14 +112,15 @@ namespace SendMailApp {
         private void bttuika_Click(object sender, RoutedEventArgs e) {
             var fod = new OpenFileDialog();
             fod.Multiselect = true;
-            if (fod.ShowDialog()==true) {
-
-                lbList.Items.Add(fod.FileName);
+            if (fod.ShowDialog() == true) {
+                foreach (var item in fod.FileNames) {
+                    lbList.Items.Add(item);
+                }           
             }
         }
 
         private void btsakujo_Click(object sender, RoutedEventArgs e) {
-
+            lbList.Items.RemoveAt(lbList.SelectedIndex);
         }
     }
 }
